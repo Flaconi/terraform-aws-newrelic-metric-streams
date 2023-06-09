@@ -16,8 +16,8 @@ Terraform module to create a firehose and cloud watch metric stream to newrelic
 <!-- TFDOCS_PROVIDER_START -->
 ## Providers
 
-| Name | Version  |
-|------|----------|
+| Name | Version |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.53 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.5.1 |
 
