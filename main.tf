@@ -37,6 +37,14 @@ resource "aws_s3_bucket_ownership_controls" "newrelic_ownership_controls" {
   }
 }
 
+resource "newrelic_api_access_key" "newrelic_aws_access_key" {
+  account_id  = data.aws_ssm_parameter.newrelic_account_id.value
+  key_type    = "INGEST"
+  ingest_type = "LICENSE"
+  name        = "Metric Stream Key for lite-${var.name}-${data.aws_region.current.name}"
+  notes       = "AWS Cloud Integrations Metric Stream Key"
+}
+
 resource "aws_kinesis_firehose_delivery_stream" "newrelic_firehose_stream" {
   name        = "newrelic_firehose_stream_${var.name}"
   destination = "http_endpoint"
@@ -53,7 +61,7 @@ resource "aws_kinesis_firehose_delivery_stream" "newrelic_firehose_stream" {
   http_endpoint_configuration {
     url                = var.newrelic_account_region == "US" ? "https://aws-api.newrelic.com/cloudwatch-metrics/v1" : "https://aws-api.eu01.nr-data.net/cloudwatch-metrics/v1"
     name               = "New Relic ${var.name}"
-    access_key         = data.aws_ssm_parameter.newrelic_api_key.value
+    access_key         = newrelic_api_access_key.newrelic_aws_access_key.key
     buffering_size     = 1
     buffering_interval = 60
     role_arn           = aws_iam_role.firehose_newrelic_role.arn
