@@ -1,5 +1,5 @@
 resource "aws_iam_role" "firehose_newrelic_role" {
-  name               = "firehose_newrelic_role"
+  name               = "firehose_newrelic_role_${data.aws_region.current.name}"
   tags               = var.tags
   assume_role_policy = <<EOF
 {
@@ -25,7 +25,7 @@ resource "random_string" "s3-bucket-name" {
 }
 
 resource "aws_s3_bucket" "newrelic_aws_bucket" {
-  bucket        = "newrelic-aws-bucket-${random_string.s3-bucket-name.id}"
+  bucket        = "newrelic-firehose-bucket-${random_string.s3-bucket-name.id}"
   tags          = var.tags
   force_destroy = true
 }
@@ -74,7 +74,7 @@ resource "aws_kinesis_firehose_delivery_stream" "newrelic_firehose_stream" {
 }
 
 resource "aws_iam_role" "metric_stream_to_firehose" {
-  name               = "newrelic_metric_stream_to_firehose_role_${var.name}"
+  name               = "newrelic_metric_stream_to_firehose_role_${var.name}-${data.aws_region.current.name}"
   tags               = var.tags
   assume_role_policy = <<EOF
 {
