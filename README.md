@@ -23,6 +23,9 @@ Terraform module to create a firehose and cloud watch metric stream to newrelic
 
 <!-- TFDOCS_PROVIDER_END -->
 
+<!-- TFDOCS_REQUIREMENTS_START -->
+## Requirements
+
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
