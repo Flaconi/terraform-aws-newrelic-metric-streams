@@ -101,11 +101,11 @@ resource "aws_iam_role_policy" "firehose_to_s3_back_up" {
                 "s3:GetObject",
                 "s3:ListBucket",
                 "s3:ListBucketMultipartUploads",
-                "s3:PutObject",
+                "s3:PutObject"
             ],
             "Resource": [
               "${aws_s3_bucket.newrelic_aws_bucket.arn}",
-              "${aws_s3_bucket.newrelic_aws_bucket.arn}/*",
+              "${aws_s3_bucket.newrelic_aws_bucket.arn}/*"
             ]
         }
     ]
