@@ -1,5 +1,5 @@
 # terraform-aws-newrelic-metric-streams
-Terraform module to create a firehose and cloud watch metric stream to newrelic
+Terraform module to create a firehose and cloud watch metric stream or logs to newrelic
 
 <!-- Uncomment and replace with your module name
 [![lint](https://github.com/flaconi/terraform-aws-newrelic-metric-streams/workflows/lint/badge.svg)](https://github.com/flaconi/terraform-aws-newrelic-metric-streams/actions?query=workflow%3Alint)
@@ -59,17 +59,23 @@ Description: n/a
 
 Type: `string`
 
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### <a name="input_newrelic_account_region"></a> [newrelic\_account\_region](#input\_newrelic\_account\_region)
+### <a name="input_type"></a> [type](#input\_type)
 
 Description: n/a
 
 Type: `string`
 
-Default: `"US"`
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### <a name="input_kinesis_stream_arn"></a> [kinesis\_stream\_arn](#input\_kinesis\_stream\_arn)
+
+Description: n/a
+
+Type: `string`
+
+Default: `null`
 
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
@@ -84,7 +90,9 @@ Default: `{}`
 <!-- TFDOCS_OUTPUTS_START -->
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_firehose_delivery_stream_arn"></a> [firehose\_delivery\_stream\_arn](#output\_firehose\_delivery\_stream\_arn) | n/a |
 
 <!-- TFDOCS_OUTPUTS_END -->
 
