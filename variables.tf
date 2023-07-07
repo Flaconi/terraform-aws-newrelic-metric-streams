@@ -8,13 +8,21 @@ variable "newrelic_account_id_ssm_path" {
   description = "flag to decide to create lambda budgets or not"
 }
 
-variable "newrelic_account_region" {
-  type    = string
-  default = "US"
-}
-
 variable "name" {
   type = string
+}
+
+variable "type" {
+  type = string
+  validation {
+    error_message = "Invalid type!"
+    condition     = contains(["logs-us", "logs-eu", "metrics-us", "metrics-eu"], var.type)
+  }
+}
+
+variable "kinesis_stream_arn" {
+  type    = string
+  default = null
 }
 
 variable "tags" {
