@@ -23,7 +23,7 @@ resource "newrelic_api_access_key" "this" {
 resource "aws_kinesis_firehose_delivery_stream" "this" {
   name        = "${var.name}-firehose"
   destination = "http_endpoint"
-  tags        = var.tags
+  tags        = merge(var.tags, contains(["logs-eu", "logs-us"], var.type) ? { LogDeliveryEnabled = "true" } : {})
 
   dynamic "kinesis_source_configuration" {
     for_each = local.enable_kinesis ? [1] : []
