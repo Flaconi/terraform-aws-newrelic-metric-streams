@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "bucket" {
     effect = "Deny"
     principals {
       identifiers = ["*"]
-      type = "*"
+      type        = "*"
     }
     actions = ["s3:*"]
 
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "bucket" {
     condition {
       test     = "Bool"
       variable = "aws:SecureTransport"
-      values = ["false"]
+      values   = ["false"]
     }
   }
 }
