@@ -25,6 +25,12 @@ variable "kinesis_stream_arn" {
   default = null
 }
 
+variable "s3_bucket_policy" {
+  description = "Set policy to S3-bucket (JSON)"
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)

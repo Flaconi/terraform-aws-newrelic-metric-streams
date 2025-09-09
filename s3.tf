@@ -14,6 +14,13 @@ resource "aws_s3_bucket" "this" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_policy" "this" {
+  count = var.s3_bucket_policy != null ? 1 : 0
+
+  bucket = aws_s3_bucket.this.id
+  policy = var.s3_bucket_policy
+}
+
 resource "aws_s3_bucket_ownership_controls" "this" {
   bucket = aws_s3_bucket.this.id
   rule {

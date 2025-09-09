@@ -77,6 +77,14 @@ Type: `string`
 
 Default: `null`
 
+### <a name="input_s3_bucket_policy"></a> [s3\_bucket\_policy](#input\_s3\_bucket\_policy)
+
+Description: Set policy to S3-bucket (JSON)
+
+Type: `string`
+
+Default: `null`
+
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: A mapping of tags to assign to all resources
