@@ -25,6 +25,12 @@ variable "kinesis_stream_arn" {
   default = null
 }
 
+variable "attach_deny_insecure_transport_policy" {
+  description = "Attach strict transport policy to S3-bucket"
+  type        = bool
+  default     = true
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)

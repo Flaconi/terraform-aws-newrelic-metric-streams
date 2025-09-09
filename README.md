@@ -77,6 +77,14 @@ Type: `string`
 
 Default: `null`
 
+### <a name="input_attach_deny_insecure_transport_policy"></a> [attach\_deny\_insecure\_transport\_policy](#input\_attach\_deny\_insecure\_transport\_policy)
+
+Description: Attach strict transport policy to S3-bucket
+
+Type: `bool`
+
+Default: `true`
+
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: A mapping of tags to assign to all resources
