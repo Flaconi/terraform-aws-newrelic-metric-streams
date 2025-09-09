@@ -25,10 +25,10 @@ variable "kinesis_stream_arn" {
   default = null
 }
 
-variable "s3_bucket_policy" {
-  description = "Set policy to S3-bucket (JSON)"
-  type        = string
-  default     = null
+variable "attach_deny_insecure_transport_policy" {
+  description = "Attach strict transport policy to S3-bucket"
+  type        = bool
+  default     = true
 }
 
 variable "tags" {

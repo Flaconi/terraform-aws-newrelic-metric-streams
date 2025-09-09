@@ -77,13 +77,13 @@ Type: `string`
 
 Default: `null`
 
-### <a name="input_s3_bucket_policy"></a> [s3\_bucket\_policy](#input\_s3\_bucket\_policy)
+### <a name="input_attach_deny_insecure_transport_policy"></a> [attach\_deny\_insecure\_transport\_policy](#input\_attach\_deny\_insecure\_transport\_policy)
 
-Description: Set policy to S3-bucket (JSON)
+Description: Attach strict transport policy to S3-bucket
 
-Type: `string`
+Type: `bool`
 
-Default: `null`
+Default: `true`
 
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
