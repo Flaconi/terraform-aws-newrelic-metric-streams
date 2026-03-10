@@ -73,6 +73,21 @@ resource "aws_cloudwatch_metric_stream" "this" {
   name          = "${var.name}-cw-metric-stream"
   role_arn      = aws_iam_role.metrics_stream[0].arn
   firehose_arn  = aws_kinesis_firehose_delivery_stream.this.arn
-  output_format = "opentelemetry0.7"
+  output_format = "opentelemetry1.0"
   tags          = var.tags
+
+  dynamic "statistics_configuration" {
+    for_each = var.statistics_configuration
+    content {
+      additional_statistics = statistics_configuration.value.additional_statistics
+
+      dynamic "include_metric" {
+        for_each = statistics_configuration.value.include_metric
+        content {
+          metric_name = include_metric.value.metric_name
+          namespace   = include_metric.value.namespace
+        }
+      }
+    }
+  }
 }
