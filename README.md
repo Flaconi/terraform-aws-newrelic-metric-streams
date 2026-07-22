@@ -93,6 +93,24 @@ Type: `map(string)`
 
 Default: `{}`
 
+### <a name="input_statistics_configuration"></a> [statistics\_configuration](#input\_statistics\_configuration)
+
+Description: For each entry in this array, you specify one or more metrics and the list of additional statistics to stream for those metrics.
+
+Type:
+
+```hcl
+list(object({
+    additional_statistics = list(string)
+    include_metric = list(object({
+      metric_name = string
+      namespace   = string
+    }))
+  }))
+```
+
+Default: `[]`
+
 <!-- TFDOCS_INPUTS_END -->
 
 <!-- TFDOCS_OUTPUTS_START -->

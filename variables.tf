@@ -36,3 +36,15 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "statistics_configuration" {
+  description = "For each entry in this array, you specify one or more metrics and the list of additional statistics to stream for those metrics."
+  type = list(object({
+    additional_statistics = list(string)
+    include_metric = list(object({
+      metric_name = string
+      namespace   = string
+    }))
+  }))
+  default = []
+}
