@@ -76,6 +76,22 @@ resource "aws_cloudwatch_metric_stream" "this" {
   output_format = "opentelemetry1.0"
   tags          = var.tags
 
+  dynamic "include_filter" {
+    for_each = var.include_filter
+    content {
+      namespace    = include_filter.value.namespace
+      metric_names = include_filter.value.metric_names
+    }
+  }
+
+  dynamic "exclude_filter" {
+    for_each = var.exclude_filter
+    content {
+      namespace    = exclude_filter.value.namespace
+      metric_names = exclude_filter.value.metric_names
+    }
+  }
+
   dynamic "statistics_configuration" {
     for_each = var.statistics_configuration
     content {
