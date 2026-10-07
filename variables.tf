@@ -48,3 +48,26 @@ variable "statistics_configuration" {
   }))
   default = []
 }
+
+variable "include_filter" {
+  description = "Namespaces (and optionally metric names within them) to stream. Leave empty to stream all namespaces. Cannot be combined with exclude_filter."
+  type = list(object({
+    namespace    = string
+    metric_names = optional(list(string), [])
+  }))
+  default = []
+}
+
+variable "exclude_filter" {
+  description = "Namespaces (or specific metric names within them) to leave out of the stream. An empty metric_names excludes the whole namespace. Cannot be combined with include_filter."
+  type = list(object({
+    namespace    = string
+    metric_names = optional(list(string), [])
+  }))
+  default = []
+
+  validation {
+    condition     = length(var.exclude_filter) == 0 || length(var.include_filter) == 0
+    error_message = "include_filter and exclude_filter are mutually exclusive (CloudWatch metric streams accept only one of them)."
+  }
+}

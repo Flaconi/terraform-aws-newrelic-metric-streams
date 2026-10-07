@@ -29,7 +29,7 @@ Terraform module to create a firehose and cloud watch metric stream or logs to n
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.4 |
 | <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | ~> 3.25 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5 |
@@ -106,6 +106,36 @@ list(object({
       metric_name = string
       namespace   = string
     }))
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_include_filter"></a> [include\_filter](#input\_include\_filter)
+
+Description: Namespaces (and optionally metric names within them) to stream. Leave empty to stream all namespaces. Cannot be combined with exclude\_filter.
+
+Type:
+
+```hcl
+list(object({
+    namespace    = string
+    metric_names = optional(list(string), [])
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_exclude_filter"></a> [exclude\_filter](#input\_exclude\_filter)
+
+Description: Namespaces (or specific metric names within them) to leave out of the stream. An empty metric\_names excludes the whole namespace. Cannot be combined with include\_filter.
+
+Type:
+
+```hcl
+list(object({
+    namespace    = string
+    metric_names = optional(list(string), [])
   }))
 ```
 
