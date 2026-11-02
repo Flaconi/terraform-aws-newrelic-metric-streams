@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-aws-newrelic-metric-streams
+  description: >
+    Creates a firehose and cloudwatch metric stream for newrelic
+  annotations:
+    github.com/project-slug: Flaconi/terraform-aws-newrelic-metric-streams
+  tags:
+    - terraform
+    - aws
+    - newrelic
+    - firehose
+    - cloudwatch
+
+spec:
+  type: library
+  lifecycle: production
+  owner: group:platform
+  system: aws-infrastructure
+  providesApis: []
